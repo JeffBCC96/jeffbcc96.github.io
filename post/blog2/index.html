@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="format-detection" content="telephone=no"/>
 
-    <title> | Rong Ma</title>
+    <title>Blog2 | Rong Ma</title>
     
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
@@ -212,23 +212,23 @@
         <div id="content" class="content-container">
         
 
-<h1 class="post-title"></h1>
+<h1 class="post-title">Blog2</h1>
+    
+    <time>July 4, 2020</time>
     
     <div>
         <p>
-        <p>i</p>
-<p>ths is ithe jaskldjkcnznxcjknahskd
-adsajsdklajkcjkljckasd
-cxzjkkajsjdkljkzxcjkjlakjsd
-zxckjalkjsdkljkzljxckjkaljskldj zx
-caskjcklxzjck as
-d
-asd
-zxc
-a
-sc
-zxc</p>
-<p>a</p>
+        <h1 id="problems-encountered-when-deploying-django">Problems encountered when deploying Django</h1>
+<p><code>Author: Rong Ma</code></p>
+<ul>
+<li>
+<p>400 Bad Request  |  settings.py allowed_host = [*] 或者 等于 domain 的名字， 或者ip 的地址 <a href="https://stackoverflow.com/questions/19875789/django-gives-bad-request-400-when-debug-false">https://stackoverflow.com/questions/19875789/django-gives-bad-request-400-when-debug-false</a></p>
+</li>
+<li>
+<p>403 FORBIDDEN Server unable to read .htaccess file, denying access to be safe| make sure .htaccess is readable by apache chmod 644 access/folder_name/.htaccess ; make sure the directory which contains .htaccess is readble and excutable. <a href="https://stackoverflow.com/questions/42849166/server-unable-to-read-htaccess-file-denying-access-to-be-safe?rq=1">https://stackoverflow.com/questions/42849166/server-unable-to-read-htaccess-file-denying-access-to-be-safe?rq=1</a>
+正确做法 -&gt; <code>sudo chmod -R 755 &lt;site_top_folder&gt;</code> <a href="https://stackoverflow.com/questions/31365981/server-unable-to-read-htaccess-file-denying-access-to-be-safe">https://stackoverflow.com/questions/31365981/server-unable-to-read-htaccess-file-denying-access-to-be-safe</a></p>
+</li>
+</ul>
 
         </p>
     </div>
@@ -238,6 +238,13 @@ zxc</p>
 
     <div class="page-footer">
         
+        <hr class="footer-divider">
+        
+            <a class="tag" href="/tags/django">#Django</a>
+        
+            <a class="tag" href="/tags/python">#Python</a>
+        
+      
     </div>
 
 
