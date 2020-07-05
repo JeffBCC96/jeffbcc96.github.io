@@ -2,13 +2,12 @@
 
 <html lang="en-us">
     <head>
-	<meta name="generator" content="Hugo 0.73.0" />
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="format-detection" content="telephone=no"/>
 
-    <title>Rong Ma</title>
+    <title>Django Deploying | Rong Ma</title>
     
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
@@ -29,8 +28,6 @@
     
     
  
-    
-    <link rel="alternate" type="application/rss+xml" href="https://jeffbcc96.github.io/index.xml" title="Rong Ma" />
     
 <script type="application/javascript">
 var doNotTrack = false;
@@ -215,50 +212,45 @@ if (!doNotTrack) {
 
         <div id="content" class="content-container">
         
-<div class = "article-content">
-        
-        <div class="description">
-            <p>Here is Rong&rsquo;s Blog, I will share my personal life as well as some knowledge of bioinformatics</p>
-        </div>
-        
-        
-        
-        
-        <article>
-            <h2>
-                <a href="https://jeffbcc96.github.io/post/blog2/">
-                    Django Deploying
-                </a>
-            </h2>
-            <div>
-                <p>Problems encountered when deploying Django Author: Rong Ma
-  400 Bad Request
-settings.py allowed_host = [*] 或者 等于 domain 的名字， 或者 ip 的地址 https://stackoverflow.</p>
-                
-                <p><a href="/post/blog2/">Read more...</a></p>
-                
-            </div>
-            <div class="post-footer">
-            <time>July 4, 2020</time>
 
-            
-            
-                
-                    <a class="tag" href="/tags/django">#Django</a>
-                
-                    <a class="tag" href="/tags/python">#Python</a>
-                
-            
-            </div> 
-           
-        </article>
-        
+<h1 class="post-title">Django Deploying</h1>
+    
+    <time>July 4, 2020</time>
+    
+    <div>
+        <p>
+        <h1 id="problems-encountered-when-deploying-django">Problems encountered when deploying Django</h1>
+<p><code>Author: Rong Ma</code></p>
+<ul>
+<li>
+<p><strong>400 Bad Request</strong></p>
+<p>settings.py allowed_host = [*] 或者 等于 domain 的名字， 或者 ip 的地址
+<a href="https://stackoverflow.com/questions/19875789/django-gives-bad-request-400-when-debug-false">https://stackoverflow.com/questions/19875789/django-gives-bad-request-400-when-debug-false</a></p>
+</li>
+<li>
+<p><strong>403 FORBIDDEN Server unable to read .htaccess file, denying access to be safe</strong>  <br></p>
+<p>Make sure .htaccess is readable by apache chmod 644 access/folder_name/.htaccess ; make sure the directory which contains .htaccess is readble and excutable. <a href="https://stackoverflow.com/questions/42849166/server-unable-to-read-htaccess-file-denying-access-to-be-safe?rq=1">https://stackoverflow.com/questions/42849166/server-unable-to-read-htaccess-file-denying-access-to-be-safe?rq=1</a>
+正确做法 -&gt; <code>sudo chmod -R 755 &lt;site_top_folder&gt;</code> <a href="https://stackoverflow.com/questions/31365981/server-unable-to-read-htaccess-file-denying-access-to-be-safe">https://stackoverflow.com/questions/31365981/server-unable-to-read-htaccess-file-denying-access-to-be-safe</a></p>
+</li>
+</ul>
+
+        </p>
     </div>
+    
+
+    
+
+    <div class="page-footer">
         
-        <div class="paginator">
+        <hr class="footer-divider">
         
+            <a class="tag" href="/tags/django">#Django</a>
         
+            <a class="tag" href="/tags/python">#Python</a>
+        
+      
     </div>
+
 
         
 
