@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="format-detection" content="telephone=no"/>
 
-    <title>Django Deploying | Rong Ma</title>
+    <title>Django Deploying (Django 部署) | Rong Ma</title>
     
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
@@ -213,24 +213,48 @@ if (!doNotTrack) {
         <div id="content" class="content-container">
         
 
-<h1 class="post-title">Django Deploying</h1>
+<h1 class="post-title">Django Deploying (Django 部署)</h1>
     
     <time>July 4, 2020</time>
     
     <div>
         <p>
         <h1 id="problems-encountered-when-deploying-django">Problems encountered when deploying Django</h1>
-<p><code>Author: Rong Ma</code></p>
+<p><em>Author: Rong Ma</em></p>
+<h2 id="1-基础知识">1. 基础知识</h2>
+<ol>
+<li>
+<p>DNS (Domain Name System) <br></p>
+<ul>
+<li>一个分布式域名查询系统，将输入的域名(Domain) 变成相对应 IP 的系统。主要根据分级的根和域来确定对应的数据库从而找到相应的ip地址。 <a href="https://blog.csdn.net/qq_31930499/article/details/79767330">具体说明</a></li>
+</ul>
+</li>
+<li>
+<p>Lightsail</p>
+<ul>
+<li>Amazon 出品的linux 服务器 并且自带一个安装好的软件。<a href="https://https://aws.amazon.com/cn/">官网</a></li>
+</ul>
+</li>
+</ol>
+<h2 id="2-遇到的问题">2. 遇到的问题</h2>
 <ul>
 <li>
 <p><strong>400 Bad Request</strong></p>
-<p>settings.py allowed_host = [*] 或者 等于 domain 的名字， 或者 ip 的地址
-<a href="https://stackoverflow.com/questions/19875789/django-gives-bad-request-400-when-debug-false">https://stackoverflow.com/questions/19875789/django-gives-bad-request-400-when-debug-false</a></p>
+<ul>
+<li>settings.py allowed_host = [*] 或者 等于 domain 的名字， 或者 ip 的地址
+<a href="https://stackoverflow.com/questions/19875789/django-gives-bad-request-400-when-debug-false">https://stackoverflow.com/questions/19875789/django-gives-bad-request-400-when-debug-false</a></li>
+</ul>
 </li>
 <li>
-<p><strong>403 FORBIDDEN Server unable to read .htaccess file, denying access to be safe</strong>  <br></p>
-<p>Make sure .htaccess is readable by apache chmod 644 access/folder_name/.htaccess ; make sure the directory which contains .htaccess is readble and excutable. <a href="https://stackoverflow.com/questions/42849166/server-unable-to-read-htaccess-file-denying-access-to-be-safe?rq=1">https://stackoverflow.com/questions/42849166/server-unable-to-read-htaccess-file-denying-access-to-be-safe?rq=1</a>
-正确做法 -&gt; <code>sudo chmod -R 755 &lt;site_top_folder&gt;</code> <a href="https://stackoverflow.com/questions/31365981/server-unable-to-read-htaccess-file-denying-access-to-be-safe">https://stackoverflow.com/questions/31365981/server-unable-to-read-htaccess-file-denying-access-to-be-safe</a></p>
+<p><strong>403 FORBIDDEN Server unable to read .htaccess file, denying access to be safe</strong></p>
+<ul>
+<li>
+<p>Make sure .htaccess is readable by apache chmod 644 access/folder_name/.htaccess ; make sure the directory which contains .htaccess is readble and excutable. <a href="https://stackoverflow.com/questions/42849166/server-unable-to-read-htaccess-file-denying-access-to-be-safe?rq=1">https://stackoverflow.com/questions/42849166/server-unable-to-read-htaccess-file-denying-access-to-be-safe?rq=1</a></p>
+</li>
+<li>
+<p>正确做法 -&gt; <code>sudo chmod -R 755 &lt;site_top_folder&gt;</code> <a href="https://stackoverflow.com/questions/31365981/server-unable-to-read-htaccess-file-denying-access-to-be-safe">https://stackoverflow.com/questions/31365981/server-unable-to-read-htaccess-file-denying-access-to-be-safe</a></p>
+</li>
+</ul>
 </li>
 </ul>
 
