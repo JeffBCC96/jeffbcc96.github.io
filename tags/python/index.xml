@@ -6,10 +6,19 @@
     <description>Recent content in Python on Rong Ma</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sat, 04 Jul 2020 00:53:26 -0400</lastBuildDate>
+    <lastBuildDate>Sun, 05 Jul 2020 11:14:03 -0400</lastBuildDate>
     
 	<atom:link href="https://jeffbcc96.github.io/tags/python/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Blog3</title>
+      <link>https://jeffbcc96.github.io/post/blog3/blog3/</link>
+      <pubDate>Sun, 05 Jul 2020 11:14:03 -0400</pubDate>
+      
+      <guid>https://jeffbcc96.github.io/post/blog3/blog3/</guid>
+      <description>This is the test for blog3 Hello from the other side kjkjk asdasd I am the best *I am the *</description>
+    </item>
     
     <item>
       <title>Blog2</title>
