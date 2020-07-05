@@ -3,51 +3,6 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
-    <loc>https://jeffbcc96.github.io/post/blog3/blog3/</loc>
-    <lastmod>2020-07-05T11:14:03-04:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://jeffbcc96.github.io/post/</loc>
-    <lastmod>2020-07-05T11:14:03-04:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://jeffbcc96.github.io/tags/python/</loc>
-    <lastmod>2020-07-05T11:14:03-04:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://jeffbcc96.github.io/</loc>
-    <lastmod>2020-07-05T11:14:03-04:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://jeffbcc96.github.io/tags/</loc>
-    <lastmod>2020-07-05T11:14:03-04:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://jeffbcc96.github.io/tags/markdown/</loc>
-    <lastmod>2020-07-04T02:09:11-04:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://jeffbcc96.github.io/post/mdsyntax/</loc>
-    <lastmod>2020-07-04T02:09:11-04:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://jeffbcc96.github.io/post/blog2/</loc>
-    <lastmod>2020-07-04T00:53:26-04:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://jeffbcc96.github.io/tags/django/</loc>
-    <lastmod>2020-07-04T00:53:26-04:00</lastmod>
-  </url>
-  
-  <url>
     <loc>https://jeffbcc96.github.io/archives/</loc>
     <lastmod>2020-07-04T00:00:00+00:00</lastmod>
   </url>
@@ -55,6 +10,14 @@
   <url>
     <loc>https://jeffbcc96.github.io/about/</loc>
     <lastmod>2020-07-03T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://jeffbcc96.github.io/</loc>
+  </url>
+  
+  <url>
+    <loc>https://jeffbcc96.github.io/tags/</loc>
   </url>
   
 </urlset>

@@ -6,38 +6,9 @@
     <description>Recent content on Rong Ma</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sun, 05 Jul 2020 11:14:03 -0400</lastBuildDate>
     
 	<atom:link href="https://jeffbcc96.github.io/index.xml" rel="self" type="application/rss+xml" />
     
-    
-    <item>
-      <title>Blog3</title>
-      <link>https://jeffbcc96.github.io/post/blog3/blog3/</link>
-      <pubDate>Sun, 05 Jul 2020 11:14:03 -0400</pubDate>
-      
-      <guid>https://jeffbcc96.github.io/post/blog3/blog3/</guid>
-      <description>This is the test for blog3 Hello from the other side kjkjk asdasd I am the best *I am the *</description>
-    </item>
-    
-    <item>
-      <title>MDsyntax</title>
-      <link>https://jeffbcc96.github.io/post/mdsyntax/</link>
-      <pubDate>Sat, 04 Jul 2020 02:09:11 -0400</pubDate>
-      
-      <guid>https://jeffbcc96.github.io/post/mdsyntax/</guid>
-      <description>&lt;p&gt;This article offers a sample of basic Markdown syntax that can be used in Hugo content files, also it shows whether basic HTML elements are decorated with CSS in a Hugo theme.&lt;/p&gt;</description>
-    </item>
-    
-    <item>
-      <title>Blog2</title>
-      <link>https://jeffbcc96.github.io/post/blog2/</link>
-      <pubDate>Sat, 04 Jul 2020 00:53:26 -0400</pubDate>
-      
-      <guid>https://jeffbcc96.github.io/post/blog2/</guid>
-      <description>Problems encountered when deploying Django Author: Rong Ma
-  400 Bad Request</description>
-    </item>
     
     <item>
       <title></title>
