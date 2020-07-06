@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="format-detection" content="telephone=no"/>
 
-    <title>Hugo | Rong Ma</title>
+    <title>Django Deploying (Django 部署) | Rong Ma</title>
     
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
@@ -28,8 +28,6 @@
     
     
  
-    
-    <link rel="alternate" type="application/rss+xml" href="https://jeffbcc96.github.io/tags/hugo/index.xml" title="Rong Ma" />
     
 <script type="application/javascript">
 var doNotTrack = false;
@@ -215,30 +213,66 @@ if (!doNotTrack) {
         <div id="content" class="content-container">
         
 
-  <h1>Tagged "Hugo"</h1>
-  
-  
+<h1 class="post-title">Django Deploying (Django 部署)</h1>
     
-    <article>
-            <h2>
-                <a href="https://jeffbcc96.github.io/post/hugo_website/hugo/">
-                    用Hugo建立个人博客
-                </a>
-            </h2>
-            <div>
-                <p>都0202年了，哪个可爱的男孩纸或者女孩纸不想拥有一个属于自己的博客呢。但是建一个博客听起来就好麻烦哦，还好有hugo这个轻量化的web 框架，从而让我们很快地搭建一个属于自己的免费的博客。让广大网友在第一时间就可以享受到分享的快乐以及成就感。
-准备工作
-以下命令最好在Mac terminal中进行并用自己定义的名字去替换&lt;&gt;中的内容
- brew hugo 或者去hugo官网下载 hugo new site &lt;网站名字&gt; 去 Git hub 上创建两个repositories  网页仓库地址： &lt;username&gt;.github.io 来存放你的网页代码 总仓库地址： 来存放后端的代码或文件   cd &lt;网站名字&gt; git init git remote add origin &lt;总仓库地址&gt; 去themes.</p>
-                
-                <p><a href="/post/hugo_website/hugo/">Read more...</a></p>
-                
-            </div>
-            <div class="post-footer">
-            <time>July 6, 2020</time>
-            </div> 
-        </article>
+    <time>July 4, 2020</time>
     
+    <div>
+        <p>
+        <p><em>Author: Rong Ma</em></p>
+<h2 id="1-基础知识">1. 基础知识</h2>
+<ol>
+<li>
+<p>DNS (Domain Name System) <br></p>
+<ul>
+<li>一个分布式域名查询系统，将输入的域名(Domain) 变成相对应 IP 的系统。主要根据分级的根和域来确定对应的数据库从而找到相应的ip地址。 <a href="https://blog.csdn.net/qq_31930499/article/details/79767330">具体说明</a></li>
+</ul>
+</li>
+<li>
+<p>Lightsail</p>
+<ul>
+<li>Amazon 出品的linux 服务器 并且自带一个安装好的软件。<a href="https://aws.amazon.com/cn/">官网</a></li>
+</ul>
+</li>
+</ol>
+<h2 id="2-遇到的问题">2. 遇到的问题</h2>
+<ul>
+<li>
+<p><strong>400 Bad Request</strong></p>
+<ul>
+<li>settings.py allowed_host = [*] 或者 等于 domain 的名字， 或者 ip 的地址
+<a href="https://stackoverflow.com/questions/19875789/django-gives-bad-request-400-when-debug-false">https://stackoverflow.com/questions/19875789/django-gives-bad-request-400-when-debug-false</a></li>
+</ul>
+</li>
+<li>
+<p><strong>403 FORBIDDEN Server unable to read .htaccess file, denying access to be safe</strong></p>
+<ul>
+<li>
+<p>Make sure .htaccess is readable by apache chmod 644 access/folder_name/.htaccess ; make sure the directory which contains .htaccess is readble and excutable. <a href="https://stackoverflow.com/questions/42849166/server-unable-to-read-htaccess-file-denying-access-to-be-safe?rq=1">https://stackoverflow.com/questions/42849166/server-unable-to-read-htaccess-file-denying-access-to-be-safe?rq=1</a></p>
+</li>
+<li>
+<p>正确做法 -&gt; <code>sudo chmod -R 755 &lt;site_top_folder&gt;</code> <a href="https://stackoverflow.com/questions/31365981/server-unable-to-read-htaccess-file-denying-access-to-be-safe">https://stackoverflow.com/questions/31365981/server-unable-to-read-htaccess-file-denying-access-to-be-safe</a></p>
+</li>
+</ul>
+</li>
+</ul>
+
+        </p>
+    </div>
+    
+
+    
+
+    <div class="page-footer">
+        
+        <hr class="footer-divider">
+        
+            <a class="tag" href="/tags/django">#Django</a>
+        
+            <a class="tag" href="/tags/python">#Python</a>
+        
+      
+    </div>
 
 
         
