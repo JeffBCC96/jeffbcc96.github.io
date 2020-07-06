@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Python on Rong Ma</title>
-    <link>https://jeffbcc96.github.io/tags/python/</link>
-    <description>Recent content in Python on Rong Ma</description>
+    <title>Hugo on Rong Ma</title>
+    <link>https://jeffbcc96.github.io/tags/hugo/</link>
+    <description>Recent content in Hugo on Rong Ma</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Mon, 06 Jul 2020 16:24:17 -0400</lastBuildDate>
     
-	<atom:link href="https://jeffbcc96.github.io/tags/python/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://jeffbcc96.github.io/tags/hugo/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
@@ -21,16 +21,6 @@
 准备工作
 以下命令最好在Mac terminal中进行并用自己定义的名字去替换&amp;lt;&amp;gt;中的内容
  brew hugo 或者去hugo官网下载 hugo new site &amp;lt;网站名字&amp;gt; 去 Git hub 上创建两个repositories  网页仓库地址： &amp;lt;username&amp;gt;.</description>
-    </item>
-    
-    <item>
-      <title>Django Deploying (Django 部署)</title>
-      <link>https://jeffbcc96.github.io/post/blog2/</link>
-      <pubDate>Sat, 04 Jul 2020 00:53:26 -0400</pubDate>
-      
-      <guid>https://jeffbcc96.github.io/post/blog2/</guid>
-      <description>Author: Rong Ma
-1. 基础知识   DNS (Domain Name System)  一个分布式域名查询系统，将输入的域名(Domain) 变成相对应 IP 的系统。主要根据分级的根和域来确定对应的数据库从而找到相应的ip地址。 具体说明    Lightsail</description>
     </item>
     
   </channel>
