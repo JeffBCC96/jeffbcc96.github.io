@@ -6,10 +6,19 @@
     <description>Recent content in Python on Rong Ma</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sun, 23 Aug 2020 12:31:42 -0400</lastBuildDate>
+    <lastBuildDate>Sun, 23 Aug 2020 16:58:17 -0400</lastBuildDate>
     
 	<atom:link href="https://jeffbcc96.github.io/tags/python/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>RNA_seq</title>
+      <link>https://jeffbcc96.github.io/post/rna_seq/</link>
+      <pubDate>Sun, 23 Aug 2020 16:58:17 -0400</pubDate>
+      
+      <guid>https://jeffbcc96.github.io/post/rna_seq/</guid>
+      <description>This is the test for our post</description>
+    </item>
     
     <item>
       <title>生物信息之LINUX 篇</title>
