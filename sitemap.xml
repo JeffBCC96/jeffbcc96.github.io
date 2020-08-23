@@ -3,22 +3,37 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
-    <loc>https://jeffbcc96.github.io/tags/life/</loc>
-    <lastmod>2020-07-22T19:30:16-04:00</lastmod>
+    <loc>https://jeffbcc96.github.io/tags/linux/</loc>
+    <lastmod>2020-08-23T12:31:42-04:00</lastmod>
   </url>
   
   <url>
     <loc>https://jeffbcc96.github.io/post/</loc>
-    <lastmod>2020-07-22T19:30:16-04:00</lastmod>
+    <lastmod>2020-08-23T12:31:42-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://jeffbcc96.github.io/tags/python/</loc>
+    <lastmod>2020-08-23T12:31:42-04:00</lastmod>
   </url>
   
   <url>
     <loc>https://jeffbcc96.github.io/</loc>
-    <lastmod>2020-07-22T19:30:16-04:00</lastmod>
+    <lastmod>2020-08-23T12:31:42-04:00</lastmod>
   </url>
   
   <url>
     <loc>https://jeffbcc96.github.io/tags/</loc>
+    <lastmod>2020-08-23T12:31:42-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://jeffbcc96.github.io/post/linux_tutorial/%E7%94%9F%E7%89%A9%E4%BF%A1%E6%81%AF-%E4%B9%8B-linux-%E7%AF%87/</loc>
+    <lastmod>2020-08-23T12:31:42-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://jeffbcc96.github.io/tags/life/</loc>
     <lastmod>2020-07-22T19:30:16-04:00</lastmod>
   </url>
   
@@ -34,11 +49,6 @@
   
   <url>
     <loc>https://jeffbcc96.github.io/post/hugo/hugo/</loc>
-    <lastmod>2020-07-06T19:05:01-04:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://jeffbcc96.github.io/tags/python/</loc>
     <lastmod>2020-07-06T19:05:01-04:00</lastmod>
   </url>
   
