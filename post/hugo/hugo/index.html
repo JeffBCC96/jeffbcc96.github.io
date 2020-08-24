@@ -240,7 +240,7 @@ if (!doNotTrack) {
 <li><code>git init</code></li>
 <li><code>git remote add origin &lt;总仓库地址&gt;</code></li>
 <li>去themes.hugo 下载想要的主题</li>
-<li><code>git submodule -b origin &lt;主题git地址&gt; &lt;themes/主题名字&gt;</code></li>
+<li><code>git submodule add -b origin &lt;主题git地址&gt; &lt;themes/主题名字&gt;</code></li>
 </ol>
 <p><strong>搭建和调试</strong></p>
 <ol>
@@ -260,7 +260,7 @@ if (!doNotTrack) {
 <li><code>git commit -m &lt;update&gt;</code></li>
 <li><code>git push origin master</code></li>
 <li>如果已经建了public 这个文件 先删除<code>rm -rf ./public</code></li>
-<li><code>git submodule -b origin &lt;网页仓库地址&gt; public</code></li>
+<li><code>git submodule add -b origin &lt;网页仓库地址&gt; public</code></li>
 <li><code>hugo --theme=&lt;主题名字&gt;</code></li>
 <li><code>cd public</code></li>
 <li><code>git add .</code></li>
