@@ -6,17 +6,44 @@
     <description>Recent content in Tags on Rong Ma</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sun, 23 Aug 2020 21:35:20 -0400</lastBuildDate>
+    <lastBuildDate>Thu, 10 Sep 2020 17:20:13 -0400</lastBuildDate>
     
 	<atom:link href="https://jeffbcc96.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
+      <title>AWK</title>
+      <link>https://jeffbcc96.github.io/tags/awk/</link>
+      <pubDate>Thu, 10 Sep 2020 17:20:13 -0400</pubDate>
+      
+      <guid>https://jeffbcc96.github.io/tags/awk/</guid>
+      <description></description>
+    </item>
+    
+    <item>
       <title>Linux</title>
       <link>https://jeffbcc96.github.io/tags/linux/</link>
-      <pubDate>Sun, 23 Aug 2020 21:35:20 -0400</pubDate>
+      <pubDate>Thu, 10 Sep 2020 17:20:13 -0400</pubDate>
       
       <guid>https://jeffbcc96.github.io/tags/linux/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>SED</title>
+      <link>https://jeffbcc96.github.io/tags/sed/</link>
+      <pubDate>Thu, 10 Sep 2020 17:20:13 -0400</pubDate>
+      
+      <guid>https://jeffbcc96.github.io/tags/sed/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Shell</title>
+      <link>https://jeffbcc96.github.io/tags/shell/</link>
+      <pubDate>Thu, 10 Sep 2020 17:19:54 -0400</pubDate>
+      
+      <guid>https://jeffbcc96.github.io/tags/shell/</guid>
       <description></description>
     </item>
     

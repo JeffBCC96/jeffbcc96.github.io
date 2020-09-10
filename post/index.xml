@@ -6,10 +6,28 @@
     <description>Recent content in Posts on Rong Ma</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sun, 23 Aug 2020 21:35:20 -0400</lastBuildDate>
+    <lastBuildDate>Thu, 10 Sep 2020 17:20:13 -0400</lastBuildDate>
     
 	<atom:link href="https://jeffbcc96.github.io/post/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>SED and AWK command lines</title>
+      <link>https://jeffbcc96.github.io/post/sed_awk/sed_awk/</link>
+      <pubDate>Thu, 10 Sep 2020 17:20:13 -0400</pubDate>
+      
+      <guid>https://jeffbcc96.github.io/post/sed_awk/sed_awk/</guid>
+      <description>&lt;p&gt;这里我罗列了sed 和 awk 常用的命令和用法。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Shell</title>
+      <link>https://jeffbcc96.github.io/post/shell/shell/</link>
+      <pubDate>Thu, 10 Sep 2020 17:19:54 -0400</pubDate>
+      
+      <guid>https://jeffbcc96.github.io/post/shell/shell/</guid>
+      <description>&lt;p&gt;更多关于linux 和shell的知识。&lt;/p&gt;</description>
+    </item>
     
     <item>
       <title>生物信息之 Linux基础篇</title>

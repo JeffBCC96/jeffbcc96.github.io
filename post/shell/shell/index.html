@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="format-detection" content="telephone=no"/>
 
-    <title> | Rong Ma</title>
+    <title>Shell | Rong Ma</title>
     
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
@@ -212,79 +212,332 @@ if (!doNotTrack) {
         <div id="content" class="content-container">
         
 
-  <h1>
-    Archives
-  </h1>
-  <div>
-     
-      
-      
-          <h3>2020</h3> 
 
-          <ul class="archives-list"> 
-            
-              
-             
-                  <li class="archives-list-item">
-                    <span class="archives-list-item-date">Sep 10</span>
-                    <span>
-                      <a href="/post/sed_awk/sed_awk/">SED and AWK command lines</a>
-                    </span>
-                  </li>
-              
-             
-                  <li class="archives-list-item">
-                    <span class="archives-list-item-date">Sep 10</span>
-                    <span>
-                      <a href="/post/shell/shell/">Shell</a>
-                    </span>
-                  </li>
-              
-             
-                  <li class="archives-list-item">
-                    <span class="archives-list-item-date">Aug 23</span>
-                    <span>
-                      <a href="/post/linux_basic/linux/">生物信息之 Linux基础篇</a>
-                    </span>
-                  </li>
-              
-             
-                  <li class="archives-list-item">
-                    <span class="archives-list-item-date">Aug 23</span>
-                    <span>
-                      <a href="/post/rna_seq/">RNA_seq</a>
-                    </span>
-                  </li>
-              
-             
-                  <li class="archives-list-item">
-                    <span class="archives-list-item-date">Jul 22</span>
-                    <span>
-                      <a href="/post/phd_advice/">关于博士学涯的一些建议</a>
-                    </span>
-                  </li>
-              
-             
-                  <li class="archives-list-item">
-                    <span class="archives-list-item-date">Jul 6</span>
-                    <span>
-                      <a href="/post/hugo/hugo/">Hugo建立个人博客</a>
-                    </span>
-                  </li>
-              
-             
-                  <li class="archives-list-item">
-                    <span class="archives-list-item-date">Jul 4</span>
-                    <span>
-                      <a href="/post/django_deploy/">Django Deploying (Django 部署)</a>
-                    </span>
-                  </li>
-              
-          </ul>
-      
-  </div>
+<h1 class="post-title">Shell</h1>
+    <script src="https://yandex.st/highlightjs/8.0/highlight.min.js"></script>
+    <link rel="stylesheet" href="https://yandex.st/highlightjs/8.0/styles/default.min.css">
+    <script>hljs.initHighlightingOnLoad();</script>
+    <link href='http://fonts.googleapis.com/css?family=Fjalla+One|Open+Sans:300' rel='stylesheet' type='text/css'>
 
-  <div class="page-footer"></div>
+    
+    <time>September 10, 2020</time>
+    
+    <div>
+        <p>
+        <p>更多关于linux 和shell的知识。</p>
+<h1 id="shell-常用命令">Shell 常用命令</h1>
+<h3 id="1-处理用户输入">1. 处理用户输入</h3>
+<h4 id="11-参数">1.1 参数</h4>
+<ul>
+<li>
+<p>前9位参数都可以按照<code>$1 - $9</code> 来取，但是10位以后就要变成<code>${10}</code>. <code>$0</code> 是程序名。</p>
+<p><code>$#</code> 特殊变量，查看总参数数量，但是当这个值附加成变量是要变成<code>${!#} 而不是 ${$#}</code>。</p>
+<p><code>$*</code> 返回所有参数，但是看做一个整体</p>
+<p><code>$@</code> 返回所有参数，看出单独个体。 这两个的区别可以在 for loop中体现出来 <code>$@</code>会循环多次，而<code>$*</code> 只循环一次</p>
+</li>
+<li>
+<p>字符串参数需要用引号括起来<code>./test.sh &quot;your name is jeff&quot;</code></p>
+</li>
+<li>
+<p><code>basename /home/rong/test.sh 只返回 test.sh</code></p>
+</li>
+<li>
+<p>检查参数是否存在 <code>if [-n &quot;$1&quot;] then xxx else xxx fi </code></p>
+</li>
+<li>
+<p><code>shift 可以移动变量（默认向左移动）； shift 2 向左移两位</code></p>
+</li>
+<li>
+<p>我们一般用case 来控制参数的选择, 用 &ndash; 来隔断额外的参数 , 用赋值来提取option后面的信息</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">$ cat test17.sh
+<span style="color:#75715e">#!/bin/bash</span>
+<span style="color:#75715e"># extracting command line options and values echo</span>
+<span style="color:#66d9ef">while</span> <span style="color:#f92672">[</span> -n <span style="color:#e6db74">&#34;</span>$1<span style="color:#e6db74">&#34;</span> <span style="color:#f92672">]</span>
+<span style="color:#66d9ef">do</span>
+    <span style="color:#66d9ef">case</span> <span style="color:#e6db74">&#34;</span>$1<span style="color:#e6db74">&#34;</span> in
+    -a<span style="color:#f92672">)</span> echo <span style="color:#e6db74">&#34;Found the -a option&#34;</span>;;
+    -b<span style="color:#f92672">)</span> param<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;</span>$2<span style="color:#e6db74">&#34;</span>
+        echo <span style="color:#e6db74">&#34;Found the -b option, with parameter value </span>$param<span style="color:#e6db74">&#34;</span>
+        shift ;;
+    -c<span style="color:#f92672">)</span> echo <span style="color:#e6db74">&#34;Found the -c option&#34;</span>;;
+    --<span style="color:#f92672">)</span> shift
+        break ;;
+    *<span style="color:#f92672">)</span> echo <span style="color:#e6db74">&#34;</span>$1<span style="color:#e6db74"> is not an option&#34;</span>;;
+      <span style="color:#66d9ef">esac</span>
+      shift 
+<span style="color:#66d9ef">done</span>
+#
+count<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span>
+<span style="color:#66d9ef">for</span> param in <span style="color:#e6db74">&#34;</span>$@<span style="color:#e6db74">&#34;</span>
+<span style="color:#66d9ef">do</span>
+  echo <span style="color:#e6db74">&#34;Parameter #</span>$count<span style="color:#e6db74">: </span>$param<span style="color:#e6db74">&#34;</span>
+  count<span style="color:#f92672">=</span>$<span style="color:#f92672">[</span> $count + <span style="color:#ae81ff">1</span> <span style="color:#f92672">]</span>
+<span style="color:#66d9ef">done</span>
+  
+  
+$ ./test17.sh -a -b test1 -d
+        Found the -a option
+Found the -b option, with parameter value test1
+-d is not an option
+$
+</code></pre></div></li>
+<li>
+<p>getopt 也是可以控制参数的选取的命令</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell"><span style="color:#75715e"># 通用写法 getopt optstring parameters</span> 
+<span style="color:#75715e"># :代表这个选项后面需要跟参数</span>
+$ getopt ab:cd -a -b test1 -cd test2 test3 -a -b test1 -c -d -- test2 test3
+  -a -b test1 -c -d -- test2 test3
+$
+  
+<span style="color:#75715e"># set命令能够处理shell中的各种变量。 set命令的选项之一是双破折线(--)，它会将命令行参数替换成set命令的命令行值。 然后，该方法会将原始脚本的命令行参数传给getopt命令，之后再将getopt命令的输出传给set命令，用getopt格式化后的命令行参数来替换原始的命令行参数</span>
+<span style="color:#75715e"># 下面是演示</span>
+  
+$ cat test18.sh
+<span style="color:#75715e">#!/bin/bash</span>
+<span style="color:#75715e"># Extract command line options &amp; values with getopt #</span>
+set -- <span style="color:#66d9ef">$(</span>getopt -q ab:cd <span style="color:#e6db74">&#34;</span>$@<span style="color:#e6db74">&#34;</span><span style="color:#66d9ef">)</span>   <span style="color:#75715e"># &lt;---- 唯一需要改变的</span>
+<span style="color:#75715e"># 其他代码与上面一样</span>
+</code></pre></div></li>
+<li>
+<p>更高级的是getopts, 会避免一些getopt 的错误</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell"><span style="color:#75715e">#!/bin/bash
+</span><span style="color:#75715e"></span><span style="color:#75715e"># simple demonstration of the getopts command #</span>
+echo
+<span style="color:#66d9ef">while</span> getopts :ab:c opt <span style="color:#75715e"># &lt;---- 在选项之前加冒号可以去掉错误信息</span>
+<span style="color:#66d9ef">do</span>
+    <span style="color:#66d9ef">case</span> <span style="color:#e6db74">&#34;</span>$opt<span style="color:#e6db74">&#34;</span> in
+        a<span style="color:#f92672">)</span> echo <span style="color:#e6db74">&#34;Found the -a option&#34;</span> ;;  <span style="color:#75715e">#&lt;-- getopts 会移除‘-’，所以case 只有选项本身就行了</span>
+        b<span style="color:#f92672">)</span> echo <span style="color:#e6db74">&#34;Found the -b option, with value </span>$OPTARG<span style="color:#e6db74">&#34;</span>;; 
+        c<span style="color:#f92672">)</span> echo <span style="color:#e6db74">&#34;Found the -c option&#34;</span> ;;
+        *<span style="color:#f92672">)</span> echo <span style="color:#e6db74">&#34;Unknown option: </span>$opt<span style="color:#e6db74">&#34;</span>;;
+      <span style="color:#66d9ef">esac</span> 
+<span style="color:#66d9ef">done</span>
+$
+$ ./test19.sh -ab test1 -c
+Found the -a option
+Found the -b option, with value test1 Found the -c option
+$
+</code></pre></div></li>
+<li>
+<p>常用参数标准含义：<img src="../image-20200907212942817.png" alt="image-20200907212942817" style="zoom:50%;" /></p>
+</li>
+</ul>
+<h4 id="12-用户输入">1.2 用户输入</h4>
+<ul>
+<li>
+<p>read [-p (指定提示符或者变量名) -t (计时器，限定输入时间) -n1(限定输入的字符数只能是1) -s(隐藏读取，适用于密码输入) ]  相当于 python 里的 age = input(&lsquo;Please enter your age:  &lsquo;)</p>
+<p>如果不指定，那就是存在 环境变量 $REPLY中</p>
+<pre><code class="language-shell " data-lang="shell ">read -p &quot;Please enter your age: &quot; age 
+days=$[ $age * 365 ]
+echo &quot;That makes you over $days days old! &quot;
+  
+# 利用while 来读取文本中的每一行
+$ cat test28.sh 
+#!/bin/bash
+# reading data from a file #
+count=1
+cat test | while read line do
+   echo &quot;Line $count: $line&quot;
+   count=$[ $count + 1]
+done
+echo &quot;Finished processing the file&quot;
+$
+</code></pre></li>
+</ul>
+<hr>
+<h3 id="2-呈现数据">2. 呈现数据</h3>
+<h4 id="21-理解输入输出">2.1 理解输入输出</h4>
+<ul>
+<li>
+<p>0，1，2 为文件描述符(shell 一次只能有9个)， 被定义为标准输入，输出，以及错误</p>
+</li>
+<li>
+<p>重定向</p>
+<ul>
+<li>
+<p>只有错误 <code>ls -al badfile 2&gt; test4</code></p>
+</li>
+<li>
+<p>错误以及数据 <code>$ ls -al test test2 test3 badtest 2&gt; test6 1&gt; test7</code> 或者</p>
+<p>写到同一个文件 <code>$ ls -al test test2 test3 badtest &amp;&gt; test7</code></p>
+</li>
+<li>
+<p>临时重定向 在脚本中写 <code>echo &quot;This is an error message&quot; &gt;&amp;2</code> 将这一行就导入到错误输出中</p>
+</li>
+<li>
+<p>永久重定向 在脚本中加 <code>exec 1&gt;testout #重定向输出； exec 2&gt;testerror 重定向错误</code> 这样输出或者错误就被写入文件testout 或者 testerror 中</p>
+</li>
+<li>
+<p>重定向输入 <code>exec 0&lt; testfile</code> 这样运行文本是就会在从testfile中提取内容</p>
+</li>
+<li>
+<p>利用shell 文件描述符， 输出结果到不同文件</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">exec 3&gt;xxxx <span style="color:#75715e">#定义</span>
+echo <span style="color:#e6db74">&#34;jeff genius&#34;</span> &gt;&amp;<span style="color:#ae81ff">3</span> <span style="color:#75715e"># 要加的信息</span>
+    
+或者 exec 3&gt;&gt;testout <span style="color:#75715e"># 追加信息到已有文件</span>
+</code></pre></div></li>
+<li>
+<p>重定向文件描述符 <code>2&gt;&amp;1</code> 这意思是将错误写到标准输出中</p>
+</li>
+<li>
+<p>经过重定向后，如何恢复原来的默认状态？ 这就需要一个锚点。如下所示：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell"><span style="color:#75715e">#!/bin/bash
+</span><span style="color:#75715e"></span><span style="color:#75715e"># redirecting input file descriptors</span>
+    
+exec 6&lt;&amp;<span style="color:#ae81ff">0</span>  <span style="color:#75715e"># 增加锚点 6，记录0的位置</span>
+exec 0&lt; testfile 将输入导入现在的0 
+    
+count<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span> <span style="color:#ae81ff">11</span> <span style="color:#66d9ef">while</span> read line
+<span style="color:#66d9ef">do</span>
+count<span style="color:#f92672">=</span>$<span style="color:#f92672">[</span> $count + <span style="color:#ae81ff">1</span> <span style="color:#f92672">]</span> <span style="color:#ae81ff">12</span> <span style="color:#66d9ef">done</span>
+    
+exec 0&lt;&amp;<span style="color:#ae81ff">6</span> <span style="color:#75715e"># 将锚点6 的位置告诉现在的0,从而实现复原。 下面是测试复原成功与否。</span>
+    
+read -p <span style="color:#e6db74">&#34;Are you done now? &#34;</span> answer
+<span style="color:#66d9ef">case</span> $answer in <span style="color:#ae81ff">13</span> Y|y<span style="color:#f92672">)</span> echo <span style="color:#e6db74">&#34;Goodbye&#34;</span>;;
+N|n<span style="color:#f92672">)</span> echo <span style="color:#e6db74">&#34;Sorry, this is the end.&#34;</span>;;
+<span style="color:#66d9ef">esac</span>
+</code></pre></div></li>
+<li>
+<p>关闭文件描述符，不能再将数据导入或者导出到其中 <code>exec 3&gt;&amp;-</code></p>
+</li>
+<li>
+<p>显示当前所有的，在用的文件描述符 <code>/usr/sbin/lsof -a -p(允许指定pid) $$(进程的当前pid) -d(允许指定文件描述符编号) 0,1,2 </code></p>
+</li>
+<li>
+<p>阻止输出 <code>xxxx &gt; /dev/null</code> 这个文件相当于垃圾箱，输出到这里等于啥都没有。也可以用来清空文件里面的内容而不删除文件 <code>cat /dev/null &gt; file_name</code></p>
+</li>
+</ul>
+</li>
+<li>
+<p>临时文件或者目录</p>
+<ul>
+<li>创建本地临时文件 <code>mktemp testing.XXXXXX</code> 这里6个X一定要加</li>
+<li>创建临时目录<code>mktemp -d dir.XXXXXX</code></li>
+</ul>
+</li>
+<li>
+<p>同时显示和记录</p>
+<ul>
+<li><code>tee -a (追加到文件，而不重写) filename</code> 如 <code>$ date | tee -a testfile</code></li>
+</ul>
+</li>
+</ul>
+<hr>
+<h3 id="3-控制脚本">3. 控制脚本</h3>
+<h4 id="31-处理信号">3.1 处理信号</h4>
+<ul>
+<li>显示进程 <code>ps 或者 top</code>; 终止进程 <code>kill &lt;pid&gt;</code></li>
+<li>SIGINT 信号 Ctrl+C 终止现在程序</li>
+<li>SIGTSTP 信号 Ctrl+Z 停止程序，并挂到后台 可以通过 <code>bg %1 #1只是模拟进程的作业号</code>; 通过<code>jobs</code> 查看分配给shell 的作业</li>
+<li>捕获信号
+<ul>
+<li>捕获信号 <code>trap commands signals 比如 trap &quot;echo ' Sorry! I have trapped Ctrl-C'&quot; SIGINT  </code> 这样加在脚本中可以让外部终止命令被捕获从而被忽略，脚本继续运行</li>
+<li>捕获并且退出 <code>trap &quot;echo Goodbye...&quot; EXIT</code></li>
+<li>恢复默认设置<code>trap -- SIGINT</code></li>
+</ul>
+</li>
+</ul>
+<h4 id="32-后台运行">3.2 后台运行</h4>
+<ul>
+<li>终端退出就退出 <code>command &amp;</code></li>
+<li>终端退出继续后台运行 <code>nohup command &amp;</code> 并将输出导入 nohup.out</li>
+<li>调整优先级 <code>nice  | renice </code></li>
+<li>定时作业 <code>at -M -f test13b.sh now/tomorrow/13:30</code> ； 查看作业队列 <code>atq</code>; 删除作业 <code>atrm xxx</code></li>
+<li>安排定期作业 cron时间表 <code>min hour dayofmonth month dayofweek command</code>
+<ul>
+<li><code>00 12 * * * if [`date +%d -d tomorrow` = 01 ] ; then ; command</code> 检查每天是不是这个月最后一天</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h3 id="4-创建函数">4. 创建函数</h3>
+<ul>
+<li>
+<p>创建一个函数的例子</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell"><span style="color:#66d9ef">function</span> dbl <span style="color:#f92672">{</span>
+  read -p <span style="color:#e6db74">&#34;Enter a value: &#34;</span> value 
+  echo <span style="color:#e6db74">&#34;doubling the value&#34;</span> 
+  <span style="color:#66d9ef">return</span> $<span style="color:#f92672">[</span> $value * <span style="color:#ae81ff">2</span> <span style="color:#f92672">]</span>
+<span style="color:#f92672">}</span>
+dbl <span style="color:#75715e">#运行函数</span>
+echo <span style="color:#e6db74">&#34;yes&#34;</span>
+</code></pre></div></li>
+<li>
+<p>函数也可以使用$1, $2 之类的， 但是需要传入值</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">$ cat test7
+<span style="color:#75715e">#!/bin/bash</span>
+<span style="color:#75715e"># trying to access script parameters inside a function</span>
+<span style="color:#66d9ef">function</span> func7 <span style="color:#f92672">{</span>
+      echo $<span style="color:#f92672">[</span> $1 * $2 <span style="color:#f92672">]</span>
+<span style="color:#f92672">}</span>
+<span style="color:#66d9ef">if</span> <span style="color:#f92672">[</span> $# -eq <span style="color:#ae81ff">2</span> <span style="color:#f92672">]</span> 
+      <span style="color:#66d9ef">then</span>
+       value<span style="color:#f92672">=</span><span style="color:#66d9ef">$(</span>func7 $1 $2<span style="color:#66d9ef">)</span>
+       echo <span style="color:#e6db74">&#34;The result is </span>$value<span style="color:#e6db74">&#34;</span>
+    <span style="color:#66d9ef">else</span>
+       echo <span style="color:#e6db74">&#34;Usage: badtest1 a b&#34;</span>
+<span style="color:#66d9ef">fi</span>
+$
+$ ./test7
+Usage: badtest1 a b $ ./test7 <span style="color:#ae81ff">10</span> <span style="color:#ae81ff">15</span>
+The result is <span style="color:#ae81ff">150</span>
+$
+</code></pre></div></li>
+<li>
+<p><code>source xxx.sh 或者 . xxxx.sh</code>   这样相当于引入function 库。</p>
+</li>
+<li>
+<p>select 可以将输入变成menu</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">PS3<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;Enter option: &#34;</span>
+<span style="color:#66d9ef">select</span> option in <span style="color:#e6db74">&#34;Display disk space&#34;</span> <span style="color:#e6db74">&#34;Display logged on users&#34;</span> <span style="color:#e6db74">&#34;Display memory usage&#34;</span> <span style="color:#e6db74">&#34;Exit program&#34;</span>
+<span style="color:#66d9ef">do</span>
+   <span style="color:#66d9ef">case</span> $option in
+   <span style="color:#e6db74">&#34;Exit program&#34;</span><span style="color:#f92672">)</span>
+         break ;;
+   <span style="color:#e6db74">&#34;Display disk space&#34;</span><span style="color:#f92672">)</span>
+         diskspace ;;
+   <span style="color:#e6db74">&#34;Display logged on users&#34;</span><span style="color:#f92672">)</span>
+         whoseon ;;
+   <span style="color:#e6db74">&#34;Display memory usage&#34;</span><span style="color:#f92672">)</span>
+              memusage ;;
+      *<span style="color:#f92672">)</span>
+        clear
+        echo <span style="color:#e6db74">&#34;sorry, wrong selection&#34;</span> ;;
+      <span style="color:#66d9ef">esac</span>
+<span style="color:#66d9ef">done</span>
+</code></pre></div></li>
+</ul>
+        </p>
+    </div>
+    
+    
+
+    
+        <div class="article-container">
+            <script src="https://utteranc.es/client.js";
+                    repo="JeffBCC96/jeffbcc96.github.io";
+                    issue-term="pathname";
+                    theme="github-light";
+                    crossorigin="anonymous";
+                    async>
+            </script>
+        </div>
+    
+
+    
+
+    <div class="page-footer">
+        
+        <hr class="footer-divider">
+        
+            <a class="tag" href="/tags/linux">#Linux</a>
+        
+            <a class="tag" href="/tags/shell">#Shell</a>
+        
+      
+    </div>
 
 
         

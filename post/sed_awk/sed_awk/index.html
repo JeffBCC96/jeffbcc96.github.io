@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="format-detection" content="telephone=no"/>
 
-    <title> | Rong Ma</title>
+    <title>SED and AWK command lines | Rong Ma</title>
     
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
@@ -212,79 +212,467 @@ if (!doNotTrack) {
         <div id="content" class="content-container">
         
 
-  <h1>
-    Archives
-  </h1>
-  <div>
-     
-      
-      
-          <h3>2020</h3> 
 
-          <ul class="archives-list"> 
-            
-              
-             
-                  <li class="archives-list-item">
-                    <span class="archives-list-item-date">Sep 10</span>
-                    <span>
-                      <a href="/post/sed_awk/sed_awk/">SED and AWK command lines</a>
-                    </span>
-                  </li>
-              
-             
-                  <li class="archives-list-item">
-                    <span class="archives-list-item-date">Sep 10</span>
-                    <span>
-                      <a href="/post/shell/shell/">Shell</a>
-                    </span>
-                  </li>
-              
-             
-                  <li class="archives-list-item">
-                    <span class="archives-list-item-date">Aug 23</span>
-                    <span>
-                      <a href="/post/linux_basic/linux/">生物信息之 Linux基础篇</a>
-                    </span>
-                  </li>
-              
-             
-                  <li class="archives-list-item">
-                    <span class="archives-list-item-date">Aug 23</span>
-                    <span>
-                      <a href="/post/rna_seq/">RNA_seq</a>
-                    </span>
-                  </li>
-              
-             
-                  <li class="archives-list-item">
-                    <span class="archives-list-item-date">Jul 22</span>
-                    <span>
-                      <a href="/post/phd_advice/">关于博士学涯的一些建议</a>
-                    </span>
-                  </li>
-              
-             
-                  <li class="archives-list-item">
-                    <span class="archives-list-item-date">Jul 6</span>
-                    <span>
-                      <a href="/post/hugo/hugo/">Hugo建立个人博客</a>
-                    </span>
-                  </li>
-              
-             
-                  <li class="archives-list-item">
-                    <span class="archives-list-item-date">Jul 4</span>
-                    <span>
-                      <a href="/post/django_deploy/">Django Deploying (Django 部署)</a>
-                    </span>
-                  </li>
-              
-          </ul>
-      
-  </div>
+<h1 class="post-title">SED and AWK command lines</h1>
+    <script src="https://yandex.st/highlightjs/8.0/highlight.min.js"></script>
+    <link rel="stylesheet" href="https://yandex.st/highlightjs/8.0/styles/default.min.css">
+    <script>hljs.initHighlightingOnLoad();</script>
+    <link href='http://fonts.googleapis.com/css?family=Fjalla+One|Open+Sans:300' rel='stylesheet' type='text/css'>
 
-  <div class="page-footer"></div>
+    
+    <time>September 10, 2020</time>
+    
+    <div>
+        <p>
+        <p>这里我罗列了sed 和 awk 常用的命令和用法。</p>
+<h3 id="1-sed">1. SED</h3>
+<p>sed 比较适合处理以行为单位的数据</p>
+<h4 id="11-基本结构">1.1 基本结构</h4>
+<p><code>	sed options script file</code></p>
+<p><img src="../image-20200908224021456.png" alt="image-20200908224021456" style="zoom:50%;" /></p>
+<p>注释</p>
+<p>​	-e: 允许多个命令</p>
+<h4 id="12-基础命令">1.2 基础命令</h4>
+<ol>
+<li>
+<p><mark>替换</mark> <code>s/pattern/replacement/flags</code>  flags: 数字(要替换第几处), g(全局), p(打印), w(将替换结果写入指定文件)</p>
+<ul>
+<li><code>sed 's/test/trial/' data4.txt</code></li>
+<li><code>sed 's/test/trial/2' data4.txt</code></li>
+<li><code>sed -n 's/test/trial/p' data5.txt</code> -n 是禁止sed编辑器输出，最后结果是只输出替换过后的行</li>
+<li><code>sed 's/test/trial/w test.txt' data5.txt</code> 将替换结果保存在data5.txt</li>
+<li><code>sed 's!/bin/bash!/bin/csh!' /etc/passwd</code> 这样可以方便替换包含 &lsquo;/&rsquo; 的字符串，相当于用！来分割 要替换的和将要替换的内容</li>
+</ul>
+</li>
+<li>
+<p><mark>地址</mark></p>
+</li>
+</ol>
+<ul>
+<li>
+<p><code>sed '2s/dog/cat/' data1.txt</code> 替换第二行</p>
+</li>
+<li>
+<p><code>sed '2,3s/dog/cat/' data1.txt</code> 2-3行</p>
+</li>
+<li>
+<p><code>sed '2,$s/dog/cat/' data1.txt</code> 2-末尾</p>
+</li>
+<li>
+<p><code>sed '/Samantha/s/bash/csh/' /etc/passwd</code> 文本过滤器， 只匹配 有Samantha 的行</p>
+</li>
+<li>
+<p>命令组合</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">所有命令作用到 3-最后
+$ sed <span style="color:#e6db74">&#39;3,${
+</span><span style="color:#e6db74">&gt; s/brown/green/
+</span><span style="color:#e6db74">&gt; s/lazy/active/
+</span><span style="color:#e6db74">&gt; }&#39;</span> data1.txt
+</code></pre></div></li>
+</ul>
+<ol start="3">
+<li>
+<p><mark>删除</mark></p>
+<ul>
+<li><code>sed '3d' data6.txt</code></li>
+<li><code>sed '3,$d' data6.txt</code></li>
+<li><code>sed '/number 1/d' data6.txt</code></li>
+</ul>
+</li>
+<li>
+<p><mark>插入和附加</mark></p>
+<ul>
+<li><code>echo &quot;Test Line 2&quot; | sed 'i\Test Line 1'</code> 插在 Test Line 1 的前面</li>
+<li><code>echo &quot;Test Line 2&quot; | sed 'a\Test Line 1'</code>  后面</li>
+<li><code>sed '3i\  This is an inserted line.' data6.txt</code> 插在第三行前</li>
+<li><code>sed '$a\  This is an inserted line.' data6.txt</code> 插在最后</li>
+<li><code>sed '1i\ xajskjakjsdkj' data6.txt</code> 插在开头</li>
+</ul>
+</li>
+<li>
+<p><mark>修改</mark></p>
+<ul>
+<li><code>sed '3c\ This is a changed line of text.' data6.txt</code></li>
+<li><code>sed '/number 3/c\ ajsdjaasd' data6.txt </code> 匹配模式修改</li>
+</ul>
+</li>
+<li>
+<p>转换命令</p>
+<p><code>[address]y/inchars/outchars/</code></p>
+<ul>
+<li><code>sed 'y/123/789/' data8.txt </code> 将文本中所有123转化成789</li>
+</ul>
+</li>
+<li>
+<p>打印</p>
+<ul>
+<li>
+<p><code>sed -n '2,3p' data6.txt</code></p>
+</li>
+<li>
+<p><code>sed '=' data.txt</code> 打印行号和内容，两者不在同一行， 常用方法：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">$ sed -n <span style="color:#e6db74">&#39;/number 4/{ 
+</span><span style="color:#e6db74">&gt;=
+</span><span style="color:#e6db74">&gt;p
+</span><span style="color:#e6db74">&gt; }&#39;</span> data6.txt
+<span style="color:#ae81ff">4</span>
+This is line number 4. 
+$
+</code></pre></div></li>
+<li>
+<p><code>sed -n 'l' data.txt </code> 将&rsquo;\t&rsquo; 之类的符号显示出来</p>
+</li>
+</ul>
+</li>
+<li>
+<p>文件处理</p>
+<ol>
+<li>
+<p>写入 <code>[address]w filename</code></p>
+<ul>
+<li><code>sed '1,2w test.txt' data6.txt</code></li>
+<li><code>sed -n '/Browncoat/w Browncoats.txt' data11.txt</code></li>
+</ul>
+</li>
+<li>
+<p>读取 <code>[address] r filename</code></p>
+<ul>
+<li><code>sed '3r data12.txt' data6.txt</code> 将data12中的内容查到data6的第三行后</li>
+</ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell"><span style="color:#75715e"># 经典案例 将LIST 变成动态内容</span>
+$ cat notice.std
+Would the following people:
+LIST
+please report to the ship<span style="color:#e6db74">&#39;s captain. 
+</span><span style="color:#e6db74">$
+</span><span style="color:#e6db74">      
+</span><span style="color:#e6db74">$ sed &#39;</span>/LIST/<span style="color:#f92672">{</span>
+&gt; r data11.txt
+&gt;d
+&gt; <span style="color:#f92672">}</span><span style="color:#e6db74">&#39; notice.std
+</span><span style="color:#e6db74">Would the following people:
+</span><span style="color:#e6db74">Blum, R Browncoat
+</span><span style="color:#e6db74">McGuiness, A Alliance
+</span><span style="color:#e6db74">Bresnahan, C Browncoat
+</span><span style="color:#e6db74">Harken, C Alliance
+</span><span style="color:#e6db74">please report to the ship&#39;</span>s captain. 
+$
+</code></pre></div></li>
+</ol>
+</li>
+</ol>
+<h4 id="13-进阶命令">1.3 进阶命令</h4>
+<ol>
+<li>
+<p>多行命令 N(加入数据流中的下一行); D(删除多行组中的一行); P (打印多行组中的一行)</p>
+<ul>
+<li>
+<p>单行next 命令 <code>sed '/header/{n ; d}' data1.txt</code> 找到header 所在行，并删除它下一行的内容</p>
+</li>
+<li>
+<p>多行版next, 将下一文本行的内容添加到已有内容中。<code>sed '/first/{ N ; s/\n/ / }' data2.txt</code></p>
+</li>
+<li>
+<p>多行删除 <code>sed 'N ; /System\nAdministrator/D' data4.txt</code> 只删除模式空间中的第一行，会删到换行符为止</p>
+<p>比如只删除文本中第一行空白行 <code>sed '/^$/{N ; /header/D}' data5.txt</code></p>
+</li>
+<li>
+<p>多行打印 只打印多行模式空间中的第一行 <code>sed -n 'N ; /System\nAdministrator/P' data3.txt</code></p>
+</li>
+</ul>
+</li>
+<li>
+<p>保持空间</p>
+<ul>
+<li>hold space  可以作为缓冲区域</li>
+</ul>
+<p><img src="../image-20200910100015392.png" alt="image-20200910100015392" style="zoom:50%;" /></p>
+<ul>
+<li><code>sed -n '/first/ {h ; p ; n ; p ; g ; p }' data2.txt</code></li>
+</ul>
+</li>
+<li>
+<p>排除命令 ！</p>
+<ul>
+<li><code>sed -n '/header/!p' data2.txt</code> 不打印匹配到header 的这一行</li>
+<li>将文本从下到上打印 <code>sed -n '{1!G ; h ; $p }' data2.txt</code></li>
+</ul>
+</li>
+<li>
+<p>分支命令</p>
+<ul>
+<li>
+<p><code>[address]b [label]</code> address 表示哪些行会出发分支命令，也就是跳转到标签位置。如果标签位置没有表明，则跳转到脚本结尾</p>
+</li>
+<li>
+<p><code>:label</code> 代表标签</p>
+</li>
+<li>
+<p><code>sed '{2,3b ; s/This is/Is this/ ; s/line./test?/}' data2.txt</code> 第2，3行就没有被更改</p>
+</li>
+<li>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">一直修改第一次出现逗号的地方，直到没有逗号出现
+$ echo <span style="color:#e6db74">&#34;This, is, a, test, to, remove, commas.&#34;</span> | sed -n <span style="color:#e6db74">&#39;{ 
+</span><span style="color:#e6db74">&gt; :start
+</span><span style="color:#e6db74">&gt; s/,//1p
+</span><span style="color:#e6db74">&gt; /,/b start
+</span><span style="color:#e6db74">&gt; }&#39;</span>
+</code></pre></div></li>
+</ul>
+</li>
+<li>
+<p>测试命令</p>
+<ul>
+<li>
+<p>和分支命令类似</p>
+</li>
+<li>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">$ sed <span style="color:#e6db74">&#39;{
+</span><span style="color:#e6db74">&gt; s/first/matched/
+</span><span style="color:#e6db74">&gt;t
+</span><span style="color:#e6db74">&gt; s/This is the/No match on/ 
+</span><span style="color:#e6db74">&gt; }&#39;</span> data2.txt
+No match on header line
+This is the matched data line No match on second data line No match on last line
+$
+</code></pre></div></li>
+</ul>
+</li>
+<li>
+<p>模式替代</p>
+<ul>
+<li>
+<p>&amp; 符号</p>
+<p><code>echo &quot;the cat sleeps in his hat&quot; | sed 's/.at/&quot;&amp;&quot;/g'</code> 这里&amp; 相当于替代了前面pattern 匹配到的文本， 然后再给这个文本加上了一个双引号。</p>
+</li>
+</ul>
+</li>
+</ol>
+<h4 id="14-常用工具">1.4 常用工具</h4>
+<ol>
+<li>
+<p>加倍行距 <code>sed '$!G' data2.txt</code> 最后一行不加空行</p>
+</li>
+<li>
+<p>加上行编号并和内容输出在同一行 <code>sed '=' data2.txt | sed 'N; s/\n/ /'</code></p>
+<p>其他方式也可以 <code>nl data2.txt</code> 或者 <code>cat -n data2.txt</code></p>
+</li>
+<li>
+<p>打印末尾行 <code>sed -n '$p' data2.txt</code></p>
+</li>
+<li>
+<p>删除连续空白行 <code>sed '/./,/^$/!d' data8.txt</code> 匹配从有任意字符的行到一个空白行不删，其他的都删</p>
+</li>
+<li>
+<p>删除开头空白行 <code>sed '/./,$!d'</code> 从任意含有字符的行开始，到结束都不删除。 等于删除开头空白行</p>
+</li>
+<li>
+<p>删除结尾空白行</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">sed <span style="color:#e6db74">&#39;{
+</span><span style="color:#e6db74">:start
+</span><span style="color:#e6db74">/^\n*$/{$d; N; b start } 
+</span><span style="color:#e6db74">}&#39;</span>
+</code></pre></div></li>
+<li>
+<p>删除html 标签<code>sed 's/&lt;[^&gt;]\*&gt;//g ; /^$/d' data11.txt</code></p>
+</li>
+</ol>
+<hr>
+<h3 id="2-awk">2. AWK</h3>
+<h4 id="21-基本概念">2.1 基本概念</h4>
+<ol>
+<li>
+<p>内建变量</p>
+<p><img src="../image-20200910133534165.png" alt="image-20200910133534165" style="zoom:50%;" /></p>
+</li>
+<li>
+<p>数据变量</p>
+<p><img src="../image-20200910133731272.png" alt="image-20200910133731272" style="zoom:50%;" /></p>
+<p>Tips: 当输入文件数量大于1 时， NR 会累计行数 但是FNR 会重置行数</p>
+</li>
+<li>
+<p>处理数组</p>
+<ol>
+<li>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell"> $ gawk <span style="color:#e6db74">&#39;BEGIN{
+</span><span style="color:#e6db74">    &gt; capital[&#34;Illinois&#34;] = &#34;Springfield&#34;
+</span><span style="color:#e6db74">    &gt; print capital[&#34;Illinois&#34;]
+</span><span style="color:#e6db74">    &gt; }&#39;</span>
+    Springfield
+    $
+</code></pre></div></li>
+<li>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell"><span style="color:#75715e"># 遍历数组</span>
+$ gawk <span style="color:#e6db74">&#39;BEGIN{
+</span><span style="color:#e6db74">&gt; var[&#34;a&#34;] = 1
+</span><span style="color:#e6db74">&gt; var[&#34;g&#34;] = 2
+</span><span style="color:#e6db74">&gt; var[&#34;m&#34;] = 3
+</span><span style="color:#e6db74">&gt; var[&#34;u&#34;] = 4
+</span><span style="color:#e6db74">&gt; for (test in var) &gt;{
+</span><span style="color:#e6db74">  &gt; print &#34;Index:&#34;,test,&#34; - Value:&#34;,var[test] &gt;}
+</span><span style="color:#e6db74">&gt; }&#39;</span>
+Index: u - Value: <span style="color:#ae81ff">4</span>
+Index: m - Value: <span style="color:#ae81ff">3</span> 
+Index: a - Value: <span style="color:#ae81ff">1</span> 
+Index: g - Value: <span style="color:#ae81ff">2</span> 
+$<span style="color:#e6db74">`</span>
+</code></pre></div></li>
+<li>
+<p>删除数组 <code>delete array[index]</code></p>
+</li>
+</ol>
+</li>
+</ol>
+<h4 id="22-使用模式">2.2 使用模式</h4>
+<ol>
+<li>
+<p>匹配</p>
+<p><code>gawk -F: '$1 ~ /rich/{print $1,$NF}' /etc/passwd</code></p>
+<p><code>gawk –F: '$1 !~ /rich/{print $1,$NF}' /etc/passwd</code></p>
+</li>
+<li>
+<p>数学表达</p>
+<p><code>gawk -F: '$4 == 0{print $1}' /etc/passwd</code></p>
+</li>
+</ol>
+<h4 id="23-结构化语言">2.3 结构化语言</h4>
+<ol>
+<li>
+<p>if</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">$ gawk <span style="color:#e6db74">&#39;{
+</span><span style="color:#e6db74">&gt; if ($1 &gt; 20) 
+</span><span style="color:#e6db74">&gt;{
+</span><span style="color:#e6db74">&gt; x=$1*2 
+</span><span style="color:#e6db74">&gt; print x 
+</span><span style="color:#e6db74">&gt;}else{
+</span><span style="color:#e6db74">&gt; print &#34;no&#34;
+</span><span style="color:#e6db74">&gt;}
+</span><span style="color:#e6db74">&gt;}&#39;</span> data4
+<span style="color:#ae81ff">100</span>
+<span style="color:#ae81ff">68</span>
+$
+</code></pre></div></li>
+<li>
+<p>while</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">$ gawk <span style="color:#e6db74">&#39;{
+</span><span style="color:#e6db74">&gt; total = 0
+</span><span style="color:#e6db74">&gt;i=1
+</span><span style="color:#e6db74">&gt; while (i &lt; 4)
+</span><span style="color:#e6db74">&gt;{
+</span><span style="color:#e6db74">&gt; total += $i
+</span><span style="color:#e6db74">&gt; if(i == 2)
+</span><span style="color:#e6db74">&gt;  break
+</span><span style="color:#e6db74">&gt; i++
+</span><span style="color:#e6db74">&gt;}
+</span><span style="color:#e6db74">&gt; avg = total / 2
+</span><span style="color:#e6db74">&gt; print &#34;The average of the first two data elements is:&#34;,avg 
+</span><span style="color:#e6db74">&gt; }&#39;</span> data5
+The average of the first two data elements is: <span style="color:#ae81ff">125</span>
+The average of the first two data elements is: 136.5
+The average of the first two data elements is: 157.5
+$
+   
+</code></pre></div></li>
+<li>
+<p>for</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">$ gawk <span style="color:#e6db74">&#39;{
+</span><span style="color:#e6db74">&gt; total = 0
+</span><span style="color:#e6db74">&gt; for (i = 1; i &lt; 4; i++) &gt;{
+</span><span style="color:#e6db74">&gt; total += $i
+</span><span style="color:#e6db74">&gt;}
+</span><span style="color:#e6db74">&gt; avg = total / 3
+</span><span style="color:#e6db74">&gt; print &#34;Average:&#34;,avg
+</span><span style="color:#e6db74">&gt; }&#39;</span> data5
+Average: 128.333
+Average: 137.667
+Average: 176.667
+$
+</code></pre></div></li>
+</ol>
+<h4 id="24-结构化打印">2.4 结构化打印</h4>
+<ul>
+<li>
+<p><code>print &quot;xxx asd a %e&quot;, data</code></p>
+<p><img src="../image-20200910135323243.png" alt="image-20200910135323243" style="zoom:50%;" /></p>
+</li>
+</ul>
+<h4 id="25-内建函数">2.5 内建函数</h4>
+<ol>
+<li>
+<p>数学函数<img src="../image-20200910135625044.png" alt="image-20200910135625044" style="zoom:50%;" /></p>
+</li>
+<li>
+<p>字符串函数</p>
+<p><img src="../image-20200910135648352.png" alt="image-20200910135648352" style="zoom:70%;" /></p>
+<p><img src="../image-20200910135709295.png" alt="image-20200910135709295" style="zoom:70%;" /></p>
+</li>
+<li>
+<p>时间函数</p>
+<p><img src="../image-20200910135757621.png" alt="image-20200910135757621" style="zoom:70%;" /></p>
+</li>
+<li>
+<p>创建并使用自定义函数</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">&gt; gawk <span style="color:#e6db74">&#39; 
+</span><span style="color:#e6db74">&gt; function myprint() 
+</span><span style="color:#e6db74">&gt; {
+</span><span style="color:#e6db74">&gt; printf &#34;%-16s - %s\n&#34;, $1, $4
+</span><span style="color:#e6db74">&gt;}
+</span><span style="color:#e6db74">&gt; BEGIN{FS=&#34;\n&#34;; RS=&#34;&#34;} 
+</span><span style="color:#e6db74">&gt;{
+</span><span style="color:#e6db74">&gt; myprint()
+</span><span style="color:#e6db74">&gt; }&#39;</span> data2
+Riley Mullen - <span style="color:#f92672">(</span>312<span style="color:#f92672">)</span>555-1234 
+Frank Williams - <span style="color:#f92672">(</span>317<span style="color:#f92672">)</span>555-9876 
+Haley Snell - <span style="color:#f92672">(</span>313<span style="color:#f92672">)</span>555-4938
+$
+   
+</code></pre></div></li>
+</ol>
+<hr>
+<h3 id="3-正则匹配以及附加内容">3. 正则匹配以及附加内容</h3>
+<ul>
+<li>+ 一次以上 ；</li>
+<li>？0次或者1次 ；</li>
+<li>* 多次；</li>
+<li>{数字} 重复次数;</li>
+<li>(xxx) 分组表达，将括号内看成一个整体</li>
+<li>| 或的意思</li>
+</ul>
+<p><img src="../image-20200908232812463.png" alt="image-20200908232812463" style="zoom:50%;" /></p>
+<ul>
+<li>数组 <code>a = (1,2,3,4,5) 或者 a = {1..5}</code></li>
+</ul>
+        </p>
+    </div>
+    
+    
+
+    
+        <div class="article-container">
+            <script src="https://utteranc.es/client.js";
+                    repo="JeffBCC96/jeffbcc96.github.io";
+                    issue-term="pathname";
+                    theme="github-light";
+                    crossorigin="anonymous";
+                    async>
+            </script>
+        </div>
+    
+
+    
+
+    <div class="page-footer">
+        
+        <hr class="footer-divider">
+        
+            <a class="tag" href="/tags/linux">#Linux</a>
+        
+            <a class="tag" href="/tags/sed">#SED</a>
+        
+            <a class="tag" href="/tags/awk">#AWK</a>
+        
+      
+    </div>
 
 
         

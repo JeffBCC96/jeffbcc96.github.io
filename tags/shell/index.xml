@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Shell on Rong Ma</title>
+    <link>https://jeffbcc96.github.io/tags/shell/</link>
+    <description>Recent content in Shell on Rong Ma</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Thu, 10 Sep 2020 17:19:54 -0400</lastBuildDate>
+    
+	<atom:link href="https://jeffbcc96.github.io/tags/shell/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Shell</title>
+      <link>https://jeffbcc96.github.io/post/shell/shell/</link>
+      <pubDate>Thu, 10 Sep 2020 17:19:54 -0400</pubDate>
+      
+      <guid>https://jeffbcc96.github.io/post/shell/shell/</guid>
+      <description>&lt;p&gt;更多关于linux 和shell的知识。&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>
