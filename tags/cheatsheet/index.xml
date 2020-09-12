@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Cheatsheet on Rong Ma</title>
+    <link>https://jeffbcc96.github.io/tags/cheatsheet/</link>
+    <description>Recent content in Cheatsheet on Rong Ma</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sat, 12 Sep 2020 19:29:01 -0400</lastBuildDate>
+    
+	<atom:link href="https://jeffbcc96.github.io/tags/cheatsheet/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Cheatsheet</title>
+      <link>https://jeffbcc96.github.io/post/cheatsheet/cheatsheet/</link>
+      <pubDate>Sat, 12 Sep 2020 19:29:01 -0400</pubDate>
+      
+      <guid>https://jeffbcc96.github.io/post/cheatsheet/cheatsheet/</guid>
+      <description>&lt;p&gt;Cheatsheet 大集合&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

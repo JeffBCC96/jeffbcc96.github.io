@@ -6,10 +6,19 @@
     <description>Recent content on Rong Ma</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Thu, 10 Sep 2020 17:20:13 -0400</lastBuildDate>
+    <lastBuildDate>Sat, 12 Sep 2020 19:29:01 -0400</lastBuildDate>
     
 	<atom:link href="https://jeffbcc96.github.io/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Cheatsheet</title>
+      <link>https://jeffbcc96.github.io/post/cheatsheet/cheatsheet/</link>
+      <pubDate>Sat, 12 Sep 2020 19:29:01 -0400</pubDate>
+      
+      <guid>https://jeffbcc96.github.io/post/cheatsheet/cheatsheet/</guid>
+      <description>&lt;p&gt;Cheatsheet 大集合&lt;/p&gt;</description>
+    </item>
     
     <item>
       <title>SED and AWK command lines</title>
